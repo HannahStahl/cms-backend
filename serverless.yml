@@ -48,6 +48,14 @@ provider:
         - "Fn::GetAtt": [ BlogPostsTable, Arn ]
 
 functions:
+  ping:
+    handler: ping.main
+    events:
+      - http:
+          path: ping
+          method: get
+          cors: true
+
   # Defines an HTTP API endpoint that calls the main function in create.js
   # - path: url path is /blogPosts
   # - method: POST request
@@ -73,7 +81,6 @@ functions:
           path: blogPosts/{id}
           method: get
           cors: true
-          authorizer: aws_iam
 
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
@@ -85,7 +92,6 @@ functions:
           path: blogPosts
           method: get
           cors: true
-          authorizer: aws_iam
 
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
