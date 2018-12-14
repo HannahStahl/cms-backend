@@ -81,6 +81,7 @@ functions:
           path: blogPosts/{id}
           method: get
           cors: true
+          authorizer: aws_iam
 
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
@@ -92,6 +93,7 @@ functions:
           path: blogPosts
           method: get
           cors: true
+          authorizer: aws_iam
 
   listSpecified:
     # Defines an HTTP API endpoint that calls the main function in listSpecified.js
