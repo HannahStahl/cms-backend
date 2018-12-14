@@ -1,4 +1,4 @@
-service: niccatterall-backend
+service: cms-backend
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:

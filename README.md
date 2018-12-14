@@ -1,1 +1,1 @@
-Backend for www.niccatterall.com, used to upload blog posts
+Backend for simplecms.netlify.com
