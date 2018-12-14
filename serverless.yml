@@ -93,6 +93,17 @@ functions:
           method: get
           cors: true
 
+  listSpecified:
+    # Defines an HTTP API endpoint that calls the main function in listSpecified.js
+    # - path: url path is /blogPostsForUser/{userId}
+    # - method: GET request
+    handler: listSpecified.main
+    events:
+      - http:
+          path: blogPostsForUser/{userId}
+          method: get
+          cors: true    
+
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
     # - path: url path is /blogPosts/{id}
