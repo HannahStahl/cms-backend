@@ -14,9 +14,9 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET title = :title, content = :content, attachment = :attachment",
+    UpdateExpression: "SET title = :title, content = :content, image = :image",
     ExpressionAttributeValues: {
-      ":attachment": data.attachment || null,
+      ":image": data.image || null,
       ":content": data.content || null,
       ":title": data.title || null
     },

@@ -11,7 +11,7 @@ export async function main(event, context) {
       blogPostId: uuid.v1(),
       title: data.title,
       content: data.content,
-      attachment: data.attachment,
+      image: data.image,
       createdAt: Date.now()
     }
   };

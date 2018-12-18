@@ -1,5 +1,5 @@
 {
-  "body": "{\"title\":\"updated blog post\",\"content\":\"new world\",\"attachment\":\"new.jpg\"}",
+  "body": "{\"title\":\"updated blog post\",\"content\":\"new world\",\"image\":\"new.jpg\"}",
   "pathParameters": {
     "id": "d94856b0-02df-11e9-a98c-ab07a4c60b75"
   },
