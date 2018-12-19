@@ -13,6 +13,7 @@ export async function main(event, context) {
       content: data.content,
       image: data.image,
       blogPostState: data.blogPostState,
+      publishedDate: data.publishedDate,
       createdAt: Date.now()
     }
   };
