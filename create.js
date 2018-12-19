@@ -12,6 +12,7 @@ export async function main(event, context) {
       title: data.title,
       content: data.content,
       image: data.image,
+      blogPostState: data.blogPostState,
       createdAt: Date.now()
     }
   };

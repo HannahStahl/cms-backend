@@ -14,8 +14,9 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET title = :title, content = :content, image = :image",
+    UpdateExpression: "SET title = :title, content = :content, image = :image, blogPostState = :blogPostState",
     ExpressionAttributeValues: {
+      ":blogPostState": data.blogPostState || null,
       ":image": data.image || null,
       ":content": data.content || null,
       ":title": data.title || null
