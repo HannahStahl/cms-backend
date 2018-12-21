@@ -11,7 +11,8 @@ export async function main(event, context) {
     // - ':userId': path parameter
     KeyConditionExpression: "userId = :userId",
     ExpressionAttributeValues: {
-      ":userId": event.pathParameters.userId
+      ":userId": event.pathParameters.userId,
+      ":blogPostState": "Published"
     }
   };
 
