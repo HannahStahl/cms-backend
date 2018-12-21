@@ -9,8 +9,8 @@ export async function main(event, context) {
     //   partition key
     // 'ExpressionAttributeValues' defines the value in the condition
     // - ':userId': path parameter
-    // - ':blogPostState': 'Published'
-    KeyConditionExpression: "userId = :userId",
+    // - ':blogPostState': "Published"
+    KeyConditionExpression: "userId = :userId and blogPostState = :blogPostState",
     ExpressionAttributeValues: {
       ":userId": event.pathParameters.userId,
       ":blogPostState": "Published"
