@@ -7,10 +7,13 @@ export async function main(event, context) {
     // 'KeyConditionExpression' defines the condition for the query
     // - 'userId = :userId': only return items with matching 'userId'
     //   partition key
+    // 'FilterExpression' defines the additional condition for the query
+    // - 'blogPostState' = :blogPostState: only return published items
     // 'ExpressionAttributeValues' defines the value in the condition
     // - ':userId': path parameter
     // - ':blogPostState': "Published"
-    KeyConditionExpression: "userId = :userId and blogPostState = :blogPostState",
+    KeyConditionExpression: "userId = :userId",
+    FilterExpression: "blogPostState = :blogPostState",
     ExpressionAttributeValues: {
       ":userId": event.pathParameters.userId,
       ":blogPostState": "Published"
@@ -22,6 +25,6 @@ export async function main(event, context) {
     // Return the matching list of items in response body
     return success(result.Items);
   } catch (e) {
-    return failure({ status: false });
+    return failure(e);
   }
 }
