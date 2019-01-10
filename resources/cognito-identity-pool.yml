@@ -5,8 +5,8 @@ Resources:
     Properties:
       # Generate a name based on the stage
       IdentityPoolName: ${self:custom.stage}IdentityPool
-      # Allow unathenticated users (GET access only)
-      AllowUnauthenticatedIdentities: true
+      # Don't allow unathenticated users
+      AllowUnauthenticatedIdentities: false
       # Link to our User Pool
       CognitoIdentityProviders:
         - ClientId:
@@ -23,8 +23,6 @@ Resources:
       Roles:
         authenticated:
           Fn::GetAtt: [CognitoAuthRole, Arn]
-        unauthenticated:
-          Fn::GetAtt: [CognitoUnAuthRole, Arn]
           
   # IAM role used for authenticated users
   CognitoAuthRole:
@@ -86,41 +84,6 @@ Resources:
                       - '/private/'
                       - '$'
                       - '{cognito-identity.amazonaws.com:sub}/*'
-  
-  # IAM role used for unauthenticated users
-  CognitoUnAuthRole:
-    Type: AWS::IAM::Role
-    Properties:
-      Path: /
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: 'Allow'
-            Principal:
-              Federated: 'cognito-identity.amazonaws.com'
-            Action:
-              - 'sts:AssumeRoleWithWebIdentity'
-            Condition:
-              StringEquals:
-                'cognito-identity.amazonaws.com:aud':
-                  Ref: CognitoIdentityPool
-              'ForAnyValue:StringLike':
-                'cognito-identity.amazonaws.com:amr': unauthenticated
-      Policies:
-        - PolicyName: 'CognitoUnauthorizedPolicy'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              # Allow unauthenticated users to get attachments from our S3 bucket
-              - Effect: 'Allow'
-                Action:
-                  - 's3:GetObject'
-                Resource:
-                  - Fn::Join:
-                    - ''
-                    -
-                      - Fn::GetAtt: [AttachmentsBucket, Arn]
-                      - '/*'
   
 # Print out the Id of the Identity Pool that is created
 Outputs:
