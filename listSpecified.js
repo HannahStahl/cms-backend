@@ -22,8 +22,13 @@ export async function main(event, context) {
 
   try {
     const result = await dynamoDbLib.call("query", params);
-    // Return the matching list of items in response body
-    return success(result.Items);
+    // Sort blog posts by published date
+    const blogPosts = result.Items;
+    blogPosts.sort(function(a, b) {
+      return new Date(b.publishedDate) - new Date(a.publishedDate);
+    });
+    // Return the blog posts in response body
+    return success(blogPosts);
   } catch (e) {
     return failure({ status: false });
   }
