@@ -85,12 +85,12 @@ functions:
   
   getSpecified:
     # Defines an HTTP API endpoint that calls the main function in getSpecified.js
-    # - path: url path is /blogPostForUser/?userId={userId}&blogPostId={blogPostId}
+    # - path: url path is /blogPostForUser/{userId}/{blogPostId}
     # - method: GET request
     handler: getSpecified.main
     events:
       - http:
-          path: blogPostForUser/?userId={userId}&blogPostId={blogPostId}
+          path: blogPostForUser/{userId}/{blogPostId}
           method: get
           cors: true
           authorizer: aws_iam
