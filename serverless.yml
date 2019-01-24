@@ -82,6 +82,18 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
+  
+  getSpecified:
+    # Defines an HTTP API endpoint that calls the main function in getSpecified.js
+    # - path: url path is /blogPostForUser/?userId={userId}&blogPostId={blogPostId}
+    # - method: GET request
+    handler: getSpecified.main
+    events:
+      - http:
+          path: blogPostForUser/?userId={userId}&blogPostId={blogPostId}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
